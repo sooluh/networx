@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SubcriteriaResource\Pages;
-use App\Models\Criteria;
-use App\Models\Subcriteria;
+use App\Filament\Resources\AlternativeResource\Pages;
+use App\Models\Alternative;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,48 +13,37 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SubcriteriaResource extends Resource
+class AlternativeResource extends Resource
 {
-    protected static ?string $model = Subcriteria::class;
+    protected static ?string $model = Alternative::class;
 
-    protected static ?string $slug = 'subcriterias';
+    protected static ?string $slug = 'alternatives';
 
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationGroup = 'SPK';
 
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
+    protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
-    protected static ?string $modelLabel = 'Sub Kriteria';
+    protected static ?string $modelLabel = 'Alternatif';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('criteria_id')
-                    ->label('Kriteria')
-                    ->relationship('criteria', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->required()
-                    ->options(function () {
-                        return Criteria::all()->pluck('name', 'id')->mapWithKeys(function ($name, $id) {
-                            $code = Criteria::query()->select('code')->find($id)->code;
-
-                            return [$id => "C$code - $name"];
-                        });
-                    }),
-
-                Forms\Components\TextInput::make('name')
-                    ->label('Nama sub kriteria')
-                    ->required()
-                    ->maxLength(255),
-
-                Forms\Components\TextInput::make('value')
-                    ->label('Nilai sub kriteria')
+                Forms\Components\TextInput::make('code')
+                    ->label('Kode kriteria')
+                    ->prefix('A')
                     ->required()
                     ->numeric()
-                    ->placeholder('1-5'),
+                    ->default(fn () => Alternative::max('code') + 1)
+                    ->disabled()
+                    ->dehydrated(),
+
+                Forms\Components\TextInput::make('name')
+                    ->label('Nama alternatif')
+                    ->required()
+                    ->maxLength(255),
             ])
             ->columns(1);
     }
@@ -64,15 +52,17 @@ class SubcriteriaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label('Nama sub kriteria')
+                Tables\Columns\TextColumn::make('code')
+                    ->label('Kode alternatif')
+                    ->formatStateUsing(fn (string $state) => "A$state")
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('value')
-                    ->label('Nilai sub kriteria')
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama alternatif')
                     ->searchable()
                     ->sortable(),
+
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make()
@@ -93,13 +83,7 @@ class SubcriteriaResource extends Resource
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ])
-            ->groups([
-                Tables\Grouping\Group::make('criteria.code')
-                    ->label('Kode Kriteria')
-                    ->titlePrefixedWithLabel(false)
-                    ->getTitleFromRecordUsing(fn (Subcriteria $record) => 'C'.$record->criteria->code.' - '.$record->criteria->name),
-            ])
-            ->defaultGroup('criteria.code');
+            ->defaultSort('code', 'asc');
     }
 
     public static function getRelations(): array
@@ -110,7 +94,7 @@ class SubcriteriaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageSubcriterias::route('/'),
+            'index' => Pages\ManageAlternatives::route('/'),
         ];
     }
 
