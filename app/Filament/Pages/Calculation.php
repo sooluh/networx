@@ -58,6 +58,7 @@ class Calculation extends Page implements HasTable
     protected function table(Table $table): Table
     {
         return $table
+            ->heading('Matriks Keputusan (X)')
             ->columns($this->getTableColumns())
             ->query($this->getTableQuery())
             ->paginated(false);
