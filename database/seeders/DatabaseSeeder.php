@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             CriteriaSeeder::class,
             SubcriteriaSeeder::class,
             AlternativeSeeder::class,
+            AssesmentSeeder::class,
         ]);
     }
 }

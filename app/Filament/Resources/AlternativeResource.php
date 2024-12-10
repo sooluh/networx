@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Actions\AssesmentAction;
 use App\Filament\Resources\AlternativeResource\Pages;
 use App\Models\Alternative;
 use Filament\Forms;
@@ -26,6 +27,8 @@ class AlternativeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
     protected static ?string $modelLabel = 'Alternatif';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -70,6 +73,7 @@ class AlternativeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
+                    AssesmentAction::make(),
                     Tables\Actions\EditAction::make()->modalWidth(MaxWidth::Large),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\ForceDeleteAction::make(),

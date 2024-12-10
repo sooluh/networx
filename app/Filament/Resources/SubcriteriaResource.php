@@ -28,6 +28,8 @@ class SubcriteriaResource extends Resource
 
     protected static ?string $modelLabel = 'Sub Kriteria';
 
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
