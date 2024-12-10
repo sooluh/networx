@@ -174,7 +174,7 @@ class SubcriteriaSeeder extends Seeder
             [
                 'id' => 24,
                 'criteria_id' => 5,
-                'name' => '1-1.5 KM',
+                'name' => '1.1-1.5 KM',
                 'value' => '4',
                 'created_at' => now(),
             ],

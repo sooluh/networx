@@ -22,7 +22,7 @@ class SubcriteriaResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $navigationGroup = 'SPK';
+    protected static ?string $navigationGroup = 'Master';
 
     protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
