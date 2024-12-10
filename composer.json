@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-gravatar": "^2.0",
+        "calebporzio/sushi": "^2.5",
         "filament/filament": "^3.2",
         "laravel-lang/common": "^6.4",
         "laravel/framework": "^11.31",
