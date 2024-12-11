@@ -22,7 +22,7 @@ class AlternativeResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $navigationGroup = 'Master';
+    protected static ?string $navigationGroup = 'Data Master';
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
