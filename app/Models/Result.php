@@ -59,6 +59,7 @@ class Result extends Model
 
             $data[] = [
                 'id' => $alternative->id,
+                'code' => $alternative->code,
                 'name' => $alternative->name,
                 'yi' => $yi,
             ];
@@ -75,6 +76,7 @@ class Result extends Model
 
     protected $schema = [
         'id' => 'integer',
+        'code' => 'integer',
         'name' => 'string',
         'yi' => 'float',
         'rank' => 'integer',

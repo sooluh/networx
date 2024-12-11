@@ -25,19 +25,19 @@ class AlternativeSeeder extends Seeder
             [
                 'id' => 3,
                 'code' => '3',
-                'name' => 'CItalang',
+                'name' => 'Desa Citalang',
                 'created_at' => now(),
             ],
             [
                 'id' => 4,
                 'code' => '4',
-                'name' => 'Batutumpang',
+                'name' => 'Desa Batutumpang',
                 'created_at' => now(),
             ],
             [
                 'id' => 5,
                 'code' => '5',
-                'name' => 'Liunggunung',
+                'name' => 'Desa Liunggunung',
                 'created_at' => now(),
             ],
         ]);

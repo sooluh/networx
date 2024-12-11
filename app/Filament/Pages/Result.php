@@ -27,6 +27,11 @@ class Result extends Page implements HasTable
 
     protected static ?int $navigationSort = 5;
 
+    public function getTopResultProperty()
+    {
+        return ResultModel::query()->orderBy('rank', 'asc')->first();
+    }
+
     protected function getTableQuery()
     {
         return ResultModel::query();
@@ -41,6 +46,7 @@ class Result extends Page implements HasTable
 
             TextColumn::make('name')
                 ->label('Alternatif')
+                ->formatStateUsing(fn (ResultModel $record) => "C$record->code - $record->name")
                 ->sortable(),
 
             TextColumn::make('yi')
