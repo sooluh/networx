@@ -46,7 +46,7 @@ class Result extends Page implements HasTable
 
             TextColumn::make('name')
                 ->label('Alternatif')
-                ->formatStateUsing(fn (ResultModel $record) => "C$record->code - $record->name")
+                ->formatStateUsing(fn (ResultModel $record) => "A$record->code - $record->name")
                 ->sortable(),
 
             TextColumn::make('yi')
