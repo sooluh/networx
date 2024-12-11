@@ -65,7 +65,7 @@ class NormalizedMatrix extends BaseWidget
                 ->label("C{$criteria->code}")
                 ->getStateUsing(function ($record) use ($criteria, $normalized) {
                     return isset($normalized[$record->id][$criteria->id])
-                        ? number_format($normalized[$record->id][$criteria->id], 4)
+                        ? number_format($normalized[$record->id][$criteria->id], 3)
                         : '-';
                 });
         }

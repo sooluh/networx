@@ -46,7 +46,7 @@ class Result extends Page implements HasTable
             TextColumn::make('yi')
                 ->label('Nilai Yi')
                 ->sortable()
-                ->formatStateUsing(fn ($state) => number_format($state, 4)),
+                ->formatStateUsing(fn ($state) => number_format($state, 3)),
         ];
     }
 

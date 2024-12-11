@@ -95,7 +95,7 @@ class YiValue extends BaseWidget
                 ->label($maxLabel)
                 ->getStateUsing(function ($record) use ($yiValues) {
                     return isset($yiValues[$record->id])
-                        ? number_format($yiValues[$record->id]['sumBenefit'], 4)
+                        ? number_format($yiValues[$record->id]['sumBenefit'], 3)
                         : '-';
                 }),
 
@@ -106,14 +106,14 @@ class YiValue extends BaseWidget
                         return '-';
                     }
 
-                    return number_format(abs($yiValues[$record->id]['sumCost']), 4);
+                    return number_format(abs($yiValues[$record->id]['sumCost']), 3);
                 }),
 
             TextColumn::make('yi')
                 ->label($yiLabel)
                 ->getStateUsing(function ($record) use ($yiValues) {
                     return isset($yiValues[$record->id])
-                        ? number_format($yiValues[$record->id]['yi'], 4)
+                        ? number_format($yiValues[$record->id]['yi'], 3)
                         : '-';
                 }),
         ];
