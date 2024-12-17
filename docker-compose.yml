@@ -1,0 +1,22 @@
+services:
+  networx:
+    container_name: unknown-networx
+    image: pratamatechsolution/unknown-networx:latest
+    restart: always
+    env_file: stack.env
+    volumes:
+      - networx:/app/storage
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - 9902:8000
+    networks:
+      - purwakarta
+
+networks:
+  purwakarta:
+    external: true
+
+volumes:
+  networx:
+    name: unknown-networx
